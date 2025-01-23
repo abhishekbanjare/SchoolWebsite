@@ -1,0 +1,6 @@
+[
+  { "id": 1, "image": "Img/homeBanner/SchoolBanner1.jpg", "alt": "Banner 1" },
+  { "id": 3, "image": "Img/homeBanner/SchoolBanner3.png", "alt": "Banner 3" },
+  { "id": 2, "image": "Img/homeBanner/SchoolBanner7.jpg", "alt": "Banner 2" },
+  { "id": 4, "image": "Img/homeBanner/SchoolBanner6.jpeg", "alt": "Banner 4" }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Mathematics",
+    "description": "Unlock the power of numbers and logical reasoning with engaging lessons.",
+    "image": "/Img/Subjects/Maths.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Science",
+    "description": "Explore the wonders of the natural world through experiments and discoveries.",
+    "image": "/Img/Subjects/Science.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Computer",
+    "description": "Learn coding, technology, and digital skills for the modern world.",
+    "image": "/Img/Subjects/Computer.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Arts",
+    "description": "Express your creativity and imagination through various art forms and techniques.",
+    "image": "/Img/Subjects/Arts.jpg"
+  }
+]
