@@ -46,21 +46,6 @@ export default function BannerCustom() {
           Home {">"} About Us
         </Typography>
       </Container>
-      {/* <Container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography variant="h3" component="h1">
-          About Us
-        </Typography>
-        <Typography variant="h5" component="h2" sx={{ mt: 2 }}>
-          Home {">"} About Us
-        </Typography>
-      </Container> */}
     </BannerWrapper>
   );
 }
