@@ -48,7 +48,7 @@ const Contact = () => {
         sx={{
           textAlign: "center",
           fontWeight: "bold",
-          marginBottom: "20px",
+          marginBottom: "30px",
         }}
       >
         Contact Us
@@ -87,7 +87,13 @@ const Contact = () => {
                 marginBottom: "15px",
               }}
             >
-              <Phone sx={{ color: "#1976d2", marginRight: "10px" }} />
+              <Phone
+                sx={{
+                  color: theme.palette.customBlue.main,
+                  fontSize: "30px",
+                  marginRight: "10px",
+                }}
+              />
               <Typography>9120983777, 8573027141</Typography>
             </Box>
             <Box
@@ -97,11 +103,23 @@ const Contact = () => {
                 marginBottom: "15px",
               }}
             >
-              <Email sx={{ color: "#1976d2", marginRight: "10px" }} />
+              <Email
+                sx={{
+                  color: theme.palette.customBlue.main,
+                  fontSize: "30px",
+                  marginRight: "10px",
+                }}
+              />
               <Typography>Anurag.baraps@gmail.com</Typography>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <LocationOn sx={{ color: "#1976d2", marginRight: "10px" }} />
+              <LocationOn
+                sx={{
+                  color: theme.palette.customBlue.main,
+                  fontSize: "30px",
+                  marginRight: "10px",
+                }}
+              />
               <Typography>
                 123, Green Avenue, Raipur, Chhattisgarh, India
               </Typography>

@@ -44,7 +44,6 @@ const Welcome = () => {
           <Grid item xs={12} md={4}>
             <Typography
               variant="h4"
-              component="h1"
               sx={{
                 fontWeight: "bold",
                 textAlign: { xs: "center", md: "left" },

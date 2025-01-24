@@ -90,7 +90,6 @@ const WhyChooseUs = () => {
       <Box ref={sectionRef} sx={{ py: 5 }}>
         <Typography
           variant="h4"
-          component="h2"
           sx={{
             fontWeight: "bold",
             textAlign: "center",

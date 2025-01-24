@@ -51,7 +51,6 @@ const Gallery = () => {
         <Grid container direction="column" alignItems="center">
           <Typography
             variant="h4"
-            component="h2"
             sx={{
               fontWeight: "bold",
               textAlign: "center",

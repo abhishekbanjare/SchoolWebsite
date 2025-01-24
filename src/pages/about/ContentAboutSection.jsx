@@ -1,62 +1,41 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography, Box } from "@mui/material";
 import React from "react";
+import theme from "../../theme/Theme";
+import content from "../.././data/contentAboutSection.json";
 
 export default function ContentAboutSection() {
   return (
-    <Container>
-      <Grid>
-        <Typography
-          variant="h3"
-          sx={{
-            fontWeight: "bold",
-            textAlign: "center",
-            mb: 4,
-          }}
-        >
+    <Container sx={{ py: 6 }}>
+      <Box sx={{ textAlign: "center", mb: 6 }}>
+        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
           About Us
         </Typography>
-        <Typography
-          variant="h5"
-          sx={{
-            textAlign: { xs: "center", md: "left" },
-          }}
-        >
-          Welcome to Anurag Public School
-        </Typography>
-        <Typography
-          variant="subtitle2"
-          sx={{
-            textAlign: { xs: "center", md: "left" },
-          }}
-        >
-          Anurag Public School is a beacon of excellence in education, dedicated
-          to nurturing young minds and building the leaders of tomorrow. Our
-          school stands as a symbol of quality education, innovation, and
-          character development, committed to providing an environment where
-          students thrive academically, socially, and emotionally.
-        </Typography>
-        {/* .................................. */}
-        <Typography
-          variant="h5"
-          sx={{
-            textAlign: { xs: "center", md: "left" },
-          }}
-        >
-          Who We Are
-        </Typography>
-        <Typography
-          variant="subtitle2"
-          sx={{
-            textAlign: { xs: "center", md: "left" },
-          }}
-        >
-          Founded with the vision to provide holistic education, Anurag Public
-          School has been a cornerstone of learning for years. We believe that
-          every child is unique and deserves the best opportunities to explore
-          their potential. With a focus on academic excellence, extracurricular
-          activities, and character building, we aim to create well-rounded
-          individuals ready to make a positive impact on the world.
-        </Typography>
+      </Box>
+
+      <Grid container spacing={6}>
+        {content.map((section, index) => (
+          <Grid item xs={12} key={index}>
+            <Typography
+              variant="h5"
+              sx={{
+                color: theme.palette.customBlue.main,
+                mb: 2,
+                textAlign: { xs: "center", md: "left" },
+              }}
+            >
+              {section.title}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                color: "text.secondary",
+                textAlign: { xs: "center", md: "left" },
+              }}
+            >
+              {section.content}
+            </Typography>
+          </Grid>
+        ))}
       </Grid>
     </Container>
   );

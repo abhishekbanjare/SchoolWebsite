@@ -43,7 +43,6 @@ const PrincipalMessage = () => {
           <Grid item xs={12} md={6}>
             <Typography
               variant="h4"
-              component="h1"
               sx={{
                 fontWeight: "bold",
                 textAlign: { xs: "center", md: "center" },
@@ -53,7 +52,6 @@ const PrincipalMessage = () => {
             </Typography>
             <Typography
               variant="subtitle1"
-              component="h2"
               sx={{
                 color: "#555",
                 fontWeight: "bold",
@@ -64,7 +62,6 @@ const PrincipalMessage = () => {
             </Typography>
             <Typography
               variant="subtitle1"
-              component="h2"
               sx={{
                 color: "#555",
                 fontWeight: "bold",

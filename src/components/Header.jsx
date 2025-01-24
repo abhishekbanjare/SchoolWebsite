@@ -27,6 +27,7 @@ const navItems = [
     subMenu: [
       { label: "Chairman Message", path: "/about/chairman-message" },
       { label: "Principal Message", path: "/about/principal-message" },
+      { label: "Headmistress Message", path: "/about/headmistress-message" },
       { label: "Mission and Vision", path: "/about/mission-vision" },
     ],
   },
@@ -45,9 +46,10 @@ const navItems = [
     label: "Admission",
     path: "/admission",
     subMenu: [
-      { label: "Eligibility", path: "/admission/eligibility" },
-      { label: "Process", path: "/admission/process" },
-      { label: "Fees", path: "/admission/fees" },
+      { label: "Admission Procedure", path: "/admission/admission-procedure" },
+      { label: "Admission Form", path: "/admission/admission-form" },
+      { label: "Admission Query", path: "/admission/admission-query" },
+      { label: "Fee Structure", path: "/admission/fee-structure" },
     ],
   },
   { label: "Gallery", path: "/gallery" },
@@ -56,7 +58,8 @@ const navItems = [
     path: "/career",
     subMenu: [
       { label: "Job Openings", path: "/career/job-openings" },
-      { label: "Internships", path: "/career/internships" },
+      { label: "Recruitment", path: "/career/recruitment" },
+      { label: "Staff Recruitment Form", path: "/career/staff-recruitment" },
     ],
   },
   { label: "Contact Us", path: "/contact" },
@@ -228,7 +231,9 @@ const Header = () => {
                       backgroundColor: "white",
                       boxShadow: 1,
                       zIndex: 10,
-                      minWidth: "200px",
+                      minWidth: "220px",
+                      justifyContent: "flex-start",
+
                       borderRadius: "8px",
                       overflow: "hidden",
                     }}
@@ -248,8 +253,9 @@ const Header = () => {
                             justifyContent: "flex-start",
                             px: 2,
                             "&:hover": {
-                              backgroundColor: "gray",
-                              color: "white",
+                              // backgroundColor: "gray",
+                              backgroundColor: "#ecf0f1",
+                              color: theme.palette.customBlue.main,
                             },
                           }}
                         >

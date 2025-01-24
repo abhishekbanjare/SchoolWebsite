@@ -51,18 +51,10 @@ export default function BannerCustom({ title, breadcrumb, bgImage }) {
         }}
       >
         <ContentWrapper>
-          <Typography
-            variant="h3"
-            component="h1"
-            sx={{ color: "#fff" }} // Example color
-          >
+          <Typography variant="h2" sx={{ color: "#fff", fontWeight: "bold" }}>
             {title}
           </Typography>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{ mt: 2, color: "#fff" }} // Example color
-          >
+          <Typography variant="h4" sx={{ mt: 2, color: "#fff" }}>
             {breadcrumb} {">"} {currentPath.split("/").pop()}
           </Typography>
         </ContentWrapper>
