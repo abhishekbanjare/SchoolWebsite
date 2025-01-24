@@ -167,11 +167,20 @@ const Header = () => {
           </Box>
         </Typography>
         {/* Desktop Menu */}
-        <Box sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
+        <Box
+          sx={{
+            display: {
+              xs: "none",
+              sm: "none",
+              md: "flex",
+            },
+          }}
+        >
           {navItems.map((item, index) =>
             item.subMenu ? (
               <Box key={index} sx={{ position: "relative" }}>
                 <Button
+                  sx={{ textTransform: "none", fontSize: "16px" }}
                   color="inherit"
                   onClick={() => toggleSubMenu(item.label)}
                   endIcon={
@@ -193,7 +202,9 @@ const Header = () => {
                       backgroundColor: "white",
                       boxShadow: 1,
                       zIndex: 10,
-                      minWidth: "150px",
+                      minWidth: "200px",
+                      borderRadius: "8px", // UPDATED: Add border radius to dropdown
+                      overflow: "hidden", // UPDATED: Prevent overflow
                     }}
                   >
                     {item.subMenu.map((subItem, subIndex) => (
@@ -201,6 +212,18 @@ const Header = () => {
                         key={subIndex}
                         fullWidth
                         onClick={() => toggleSubMenu(item.label)}
+                        sx={{
+                          textTransform: "none",
+                          fontSize: "16px",
+                          borderRadius: 0, // UPDATED: Reset radius for buttons inside
+                          color: "#000",
+                          justifyContent: "flex-start",
+                          px: 2,
+                          "&:hover": {
+                            backgroundColor: theme.palette.customBlue.main, // UPDATED: Optional hover color
+                            color: "#000",
+                          },
+                        }}
                       >
                         {subItem}
                       </Button>
@@ -210,6 +233,7 @@ const Header = () => {
               </Box>
             ) : (
               <Button
+                sx={{ textTransform: "none", fontSize: "16px" }}
                 key={index}
                 color="inherit"
                 component={item.path ? Link : "button"}
@@ -237,5 +261,4 @@ const Header = () => {
     </AppBar>
   );
 };
-
 export default Header;
