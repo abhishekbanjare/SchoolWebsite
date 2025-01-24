@@ -60,13 +60,12 @@ const navItems = [
     ],
   },
   { label: "Contact Us", path: "/contact" },
-  { label: "Scholarship", path: "/scholarship" },
 ];
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [hoveredMenu, setHoveredMenu] = useState(null);
-  const [drawerMenuState, setDrawerMenuState] = useState({}); // Tracks open state of drawer submenus
+  const [drawerMenuState, setDrawerMenuState] = useState({});
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
@@ -100,7 +99,12 @@ const Header = () => {
           <React.Fragment key={index}>
             {item.subMenu ? (
               <>
-                <ListItem button onClick={() => toggleDrawerMenu(item.label)}>
+                <ListItem
+                  button
+                  onClick={() => toggleDrawerMenu(item.label)}
+                  component={Link}
+                  to={item.path} // Added navigation for main menu
+                >
                   <ListItemText primary={item.label} />
                   {drawerMenuState[item.label] ? (
                     <ExpandLessIcon />
@@ -145,22 +149,30 @@ const Header = () => {
       sx={{ backgroundColor: theme.palette.customBlue.main }}
     >
       <Toolbar>
-        {/* Logo Section */}
         <Typography
           variant="h6"
           component="div"
           sx={{ flexGrow: 1, display: "flex", alignItems: "center", p: 1 }}
         >
-          <img
+          <Box
+            component="img"
             src="/Img/Logo/logo.jpg"
             alt="School Logo"
-            style={{ height: "66px", marginRight: "10px", borderRadius: "50%" }}
+            sx={{
+              borderRadius: "50%",
+              height: {
+                xs: "50px",
+                sm: "60px",
+                md: "66px",
+              },
+              marginRight: "10px",
+            }}
           />
           <Box>
-            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            <Typography variant="h6" sx={{ fontWeight: 800 }}>
               Anurag
             </Typography>
-            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            <Typography variant="h6" sx={{ fontWeight: 800 }}>
               Public School
             </Typography>
           </Box>
@@ -187,7 +199,8 @@ const Header = () => {
                 <Button
                   sx={{
                     textTransform: "none",
-                    fontSize: "16px",
+                    fontSize: "18px",
+                    fontWeight: "500",
                     color: "white",
                     backgroundColor:
                       hoveredMenu === item.label
@@ -201,6 +214,8 @@ const Header = () => {
                       <ExpandMoreIcon />
                     )
                   }
+                  component={Link}
+                  to={item.path} // Added navigation for main menu
                 >
                   {item.label}
                 </Button>
@@ -247,7 +262,12 @@ const Header = () => {
               </Box>
             ) : (
               <Button
-                sx={{ textTransform: "none", fontSize: "16px", color: "white" }}
+                sx={{
+                  textTransform: "none",
+                  fontSize: "18px",
+                  fontWeight: "500",
+                  color: "white",
+                }}
                 key={index}
                 component={Link}
                 to={item.path}
