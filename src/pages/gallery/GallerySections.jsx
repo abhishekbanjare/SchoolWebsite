@@ -34,7 +34,20 @@ const galleryImages = [
 
 const GallerySections = () => {
   return (
-    <Container sx={{ py: 6 }}>
+    <Container sx={{ pb: 6, pt: 4 }}>
+      <Grid alignItems="center">
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{
+            fontWeight: "bold",
+            textAlign: "center",
+            mb: 4,
+          }}
+        >
+          Our Gallery
+        </Typography>
+      </Grid>
       <Grid container spacing={2}>
         {galleryImages.map((image, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
