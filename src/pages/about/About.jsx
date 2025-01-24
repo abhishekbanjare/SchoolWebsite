@@ -1,17 +1,16 @@
 import React from "react";
 import BannerCustom from "../customeComponents/BannerCustom";
-import Contact from "./Contact";
 import backgroundImage from "/Img/customBanner/ContactBanner6.jpg";
-// import backgroundImage from "/Img/customBanner/ContactBanner4.webp";
-export default function ContactsPage() {
+import ContentAboutSection from "./ContentAboutSection";
+export default function About() {
   return (
     <div>
       <BannerCustom
-        title="Contact Us"
+        title="About Us"
         breadcrumb="Home"
         bgImage={backgroundImage}
       />
-      <Contact />
+      <ContentAboutSection />
     </div>
   );
 }

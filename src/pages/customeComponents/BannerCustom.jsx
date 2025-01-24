@@ -11,7 +11,7 @@ const Overlay = styled(Box)(({ theme }) => ({
   left: 0,
   width: "100%",
   height: "100%",
-  backgroundColor: "rgba(13, 13, 14, 0.5)", // Overlay color
+  backgroundColor: "rgba(40, 40, 44, 0.5)", // Overlay color
   zIndex: 1, // Ensures the overlay is below the text
 }));
 
