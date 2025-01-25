@@ -91,11 +91,29 @@ const Header = () => {
 
   const drawerContent = (
     <Box sx={{ width: 250 }} role="presentation">
-      <Box sx={{ p: 2 }}>
-        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-          Anurag Public School
-        </Typography>
-        <Divider />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          backgroundColor: theme.palette.customBlue.main,
+          py: 0.6,
+        }}
+      >
+        <Box
+          component="img"
+          src="/Img/Logo/SchoolLogo.png"
+          alt="School Logo"
+          sx={{
+            height: {
+              xs: "53px",
+              sm: "62px",
+              md: "66px",
+            },
+            marginRight: "10px",
+          }}
+        />
+        {/* <Divider /> */}
       </Box>
       <List>
         {navItems.map((item, index) => (
@@ -159,10 +177,12 @@ const Header = () => {
         >
           <Box
             component="img"
-            src="/Img/Logo/logo.jpg"
+            // src="/Img/Logo/logo.jpg"
+            src="/Img/Logo/SchoolLogo.png"
             alt="School Logo"
             sx={{
-              borderRadius: "50%",
+              // borderRadius: "50%",
+              // border:"1px solid blue",
               height: {
                 xs: "50px",
                 sm: "60px",
@@ -171,14 +191,14 @@ const Header = () => {
               marginRight: "10px",
             }}
           />
-          <Box>
+          {/* <Box>
             <Typography variant="h6" sx={{ fontWeight: 800 }}>
               Anurag
             </Typography>
             <Typography variant="h6" sx={{ fontWeight: 800 }}>
               Public School
             </Typography>
-          </Box>
+          </Box> */}
         </Typography>
 
         {/* Desktop Navigation */}
