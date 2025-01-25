@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -23,6 +23,7 @@ const navItems = [
   { label: "Home", path: "/" },
   {
     label: "About Us",
+    path: "/about",
     subMenu: [
       { label: "Chairman Message", path: "/about/chairman-message" },
       { label: "Principal Message", path: "/about/principal-message" },
@@ -31,6 +32,7 @@ const navItems = [
   },
   {
     label: "Academics",
+    path: "/academics",
     subMenu: [
       { label: "Pre Primary", path: "/academics/pre-primary" },
       { label: "Middle School", path: "/academics/middle-school" },
@@ -41,6 +43,7 @@ const navItems = [
   { label: "Curriculum", path: "/curriculum" },
   {
     label: "Admission",
+    path: "/admission",
     subMenu: [
       { label: "Eligibility", path: "/admission/eligibility" },
       { label: "Process", path: "/admission/process" },
@@ -50,6 +53,7 @@ const navItems = [
   { label: "Gallery", path: "/gallery" },
   {
     label: "Career",
+    path: "/career",
     subMenu: [
       { label: "Job Openings", path: "/career/job-openings" },
       { label: "Internships", path: "/career/internships" },
@@ -61,37 +65,27 @@ const navItems = [
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [openSubMenus, setOpenSubMenus] = useState({});
-  const dropdownRef = useRef(null);
+  const [hoveredMenu, setHoveredMenu] = useState(null);
+  const [drawerMenuState, setDrawerMenuState] = useState({}); // Tracks open state of drawer submenus
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
 
-  const toggleSubMenu = (menuLabel) => {
-    setOpenSubMenus((prev) => ({
-      ...prev,
-      [menuLabel]: !prev[menuLabel],
+  const handleMouseEnter = (menuLabel) => {
+    setHoveredMenu(menuLabel);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredMenu(null);
+  };
+
+  const toggleDrawerMenu = (menuLabel) => {
+    setDrawerMenuState((prevState) => ({
+      ...prevState,
+      [menuLabel]: !prevState[menuLabel],
     }));
   };
-
-  const closeAllSubMenus = () => {
-    setOpenSubMenus({});
-  };
-
-  // Close dropdowns if clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        closeAllSubMenus();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   const drawerContent = (
     <Box sx={{ width: 250 }} role="presentation">
@@ -104,54 +98,40 @@ const Header = () => {
       <List>
         {navItems.map((item, index) => (
           <React.Fragment key={index}>
-            <ListItem
-              button
-              onClick={
-                item.subMenu
-                  ? () => toggleSubMenu(item.label)
-                  : toggleDrawer(false)
-              }
-            >
-              <ListItemText>
-                {item.path ? (
-                  <Link
-                    to={item.path}
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  item.label
-                )}
-              </ListItemText>
-              {item.subMenu &&
-                (openSubMenus[item.label] ? (
-                  <ExpandLessIcon />
-                ) : (
-                  <ExpandMoreIcon />
-                ))}
-            </ListItem>
-            {item.subMenu && openSubMenus[item.label] && (
-              <Collapse
-                in={openSubMenus[item.label]}
-                timeout="auto"
-                unmountOnExit
-              >
-                <List component="div" disablePadding sx={{ pl: 4 }}>
-                  {item.subMenu.map((subItem, subIndex) => (
-                    <ListItem button key={subIndex}>
-                      <ListItemText>
-                        <Link
-                          to={subItem.path}
-                          style={{ textDecoration: "none", color: "inherit" }}
-                        >
-                          {subItem.label}
-                        </Link>
-                      </ListItemText>
-                    </ListItem>
-                  ))}
-                </List>
-              </Collapse>
+            {item.subMenu ? (
+              <>
+                <ListItem button onClick={() => toggleDrawerMenu(item.label)}>
+                  <ListItemText primary={item.label} />
+                  {drawerMenuState[item.label] ? (
+                    <ExpandLessIcon />
+                  ) : (
+                    <ExpandMoreIcon />
+                  )}
+                </ListItem>
+                <Collapse
+                  in={drawerMenuState[item.label]}
+                  timeout="auto"
+                  unmountOnExit
+                >
+                  <List component="div" disablePadding>
+                    {item.subMenu.map((subItem, subIndex) => (
+                      <ListItem
+                        key={subIndex}
+                        button
+                        sx={{ pl: 4 }}
+                        component={Link}
+                        to={subItem.path}
+                      >
+                        <ListItemText primary={subItem.label} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              </>
+            ) : (
+              <ListItem button component={Link} to={item.path}>
+                <ListItemText primary={item.label} />
+              </ListItem>
             )}
           </React.Fragment>
         ))}
@@ -164,7 +144,8 @@ const Header = () => {
       position="static"
       sx={{ backgroundColor: theme.palette.customBlue.main }}
     >
-      <Toolbar ref={dropdownRef}>
+      <Toolbar>
+        {/* Logo Section */}
         <Typography
           variant="h6"
           component="div"
@@ -184,7 +165,8 @@ const Header = () => {
             </Typography>
           </Box>
         </Typography>
-        {/* Desktop Menu */}
+
+        {/* Desktop Navigation */}
         <Box
           sx={{
             display: {
@@ -196,13 +178,24 @@ const Header = () => {
         >
           {navItems.map((item, index) =>
             item.subMenu ? (
-              <Box key={index} sx={{ position: "relative" }}>
+              <Box
+                key={index}
+                onMouseEnter={() => handleMouseEnter(item.label)}
+                onMouseLeave={handleMouseLeave}
+                sx={{ position: "relative", mx: 1 }}
+              >
                 <Button
-                  sx={{ textTransform: "none", fontSize: "16px" }}
-                  color="inherit"
-                  onClick={() => toggleSubMenu(item.label)}
+                  sx={{
+                    textTransform: "none",
+                    fontSize: "16px",
+                    color: "white",
+                    backgroundColor:
+                      hoveredMenu === item.label
+                        ? "rgba(255, 255, 255, 0.2)"
+                        : "transparent",
+                  }}
                   endIcon={
-                    openSubMenus[item.label] ? (
+                    hoveredMenu === item.label ? (
                       <ExpandLessIcon />
                     ) : (
                       <ExpandMoreIcon />
@@ -211,7 +204,7 @@ const Header = () => {
                 >
                   {item.label}
                 </Button>
-                {openSubMenus[item.label] && (
+                {hoveredMenu === item.label && (
                   <Box
                     sx={{
                       position: "absolute",
@@ -226,39 +219,37 @@ const Header = () => {
                     }}
                   >
                     {item.subMenu.map((subItem, subIndex) => (
-                      <Button
+                      <Link
                         key={subIndex}
-                        fullWidth
-                        sx={{
-                          textTransform: "none",
-                          fontSize: "16px",
-                          borderRadius: 0,
-                          color: "#000",
-                          justifyContent: "flex-start",
-                          px: 2,
-                          "&:hover": {
-                            backgroundColor: theme.palette.customBlue.main,
-                            color: "#000",
-                          },
-                        }}
+                        to={subItem.path}
+                        style={{ textDecoration: "none" }}
                       >
-                        <Link
-                          to={subItem.path}
-                          style={{ textDecoration: "none", color: "inherit" }}
+                        <Button
+                          fullWidth
+                          sx={{
+                            textTransform: "none",
+                            fontSize: "16px",
+                            color: "black",
+                            justifyContent: "flex-start",
+                            px: 2,
+                            "&:hover": {
+                              backgroundColor: "gray",
+                              color: "white",
+                            },
+                          }}
                         >
                           {subItem.label}
-                        </Link>
-                      </Button>
+                        </Button>
+                      </Link>
                     ))}
                   </Box>
                 )}
               </Box>
             ) : (
               <Button
-                sx={{ textTransform: "none", fontSize: "16px" }}
+                sx={{ textTransform: "none", fontSize: "16px", color: "white" }}
                 key={index}
-                color="inherit"
-                component={item.path ? Link : "button"}
+                component={Link}
                 to={item.path}
               >
                 {item.label}
@@ -266,7 +257,8 @@ const Header = () => {
             )
           )}
         </Box>
-        {/* Mobile Menu */}
+
+        {/* Mobile Navigation */}
         <IconButton
           edge="end"
           color="inherit"
