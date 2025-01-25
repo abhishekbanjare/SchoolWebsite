@@ -51,7 +51,7 @@ const Contact = () => {
           marginBottom: "30px",
         }}
       >
-        Contact Us
+        Contact Us Contact Us
       </Typography>
 
       {/* Grid Container */}
