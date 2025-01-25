@@ -23,29 +23,40 @@ const navItems = [
   { label: "Home", path: "/" },
   {
     label: "About Us",
-    subMenu: ["Chairman Message", "Principal Message", "Mission and Vision"],
+    subMenu: [
+      { label: "Chairman Message", path: "/about/chairman-message" },
+      { label: "Principal Message", path: "/about/principal-message" },
+      { label: "Mission and Vision", path: "/about/mission-vision" },
+    ],
   },
   {
     label: "Academics",
     subMenu: [
-      "Pre Primary",
-      "Middle School",
-      "Secondary School",
-      "Higher Secondary",
+      { label: "Pre Primary", path: "/academics/pre-primary" },
+      { label: "Middle School", path: "/academics/middle-school" },
+      { label: "Secondary School", path: "/academics/secondary-school" },
+      { label: "Higher Secondary", path: "/academics/higher-secondary" },
     ],
   },
-  { label: "Curriculum" },
+  { label: "Curriculum", path: "/curriculum" },
   {
     label: "Admission",
-    subMenu: ["Eligibility", "Process", "Fees"],
+    subMenu: [
+      { label: "Eligibility", path: "/admission/eligibility" },
+      { label: "Process", path: "/admission/process" },
+      { label: "Fees", path: "/admission/fees" },
+    ],
   },
   { label: "Gallery", path: "/gallery" },
   {
     label: "Career",
-    subMenu: ["Job Openings", "Internships"],
+    subMenu: [
+      { label: "Job Openings", path: "/career/job-openings" },
+      { label: "Internships", path: "/career/internships" },
+    ],
   },
   { label: "Contact Us", path: "/contact" },
-  { label: "Scholarship" },
+  { label: "Scholarship", path: "/scholarship" },
 ];
 
 const Header = () => {
@@ -129,7 +140,14 @@ const Header = () => {
                 <List component="div" disablePadding sx={{ pl: 4 }}>
                   {item.subMenu.map((subItem, subIndex) => (
                     <ListItem button key={subIndex}>
-                      <ListItemText primary={subItem} />
+                      <ListItemText>
+                        <Link
+                          to={subItem.path}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          {subItem.label}
+                        </Link>
+                      </ListItemText>
                     </ListItem>
                   ))}
                 </List>
@@ -203,29 +221,33 @@ const Header = () => {
                       boxShadow: 1,
                       zIndex: 10,
                       minWidth: "200px",
-                      borderRadius: "8px", // UPDATED: Add border radius to dropdown
-                      overflow: "hidden", // UPDATED: Prevent overflow
+                      borderRadius: "8px",
+                      overflow: "hidden",
                     }}
                   >
                     {item.subMenu.map((subItem, subIndex) => (
                       <Button
                         key={subIndex}
                         fullWidth
-                        onClick={() => toggleSubMenu(item.label)}
                         sx={{
                           textTransform: "none",
                           fontSize: "16px",
-                          borderRadius: 0, // UPDATED: Reset radius for buttons inside
+                          borderRadius: 0,
                           color: "#000",
                           justifyContent: "flex-start",
                           px: 2,
                           "&:hover": {
-                            backgroundColor: theme.palette.customBlue.main, // UPDATED: Optional hover color
+                            backgroundColor: theme.palette.customBlue.main,
                             color: "#000",
                           },
                         }}
                       >
-                        {subItem}
+                        <Link
+                          to={subItem.path}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          {subItem.label}
+                        </Link>
                       </Button>
                     ))}
                   </Box>
@@ -261,4 +283,5 @@ const Header = () => {
     </AppBar>
   );
 };
+
 export default Header;

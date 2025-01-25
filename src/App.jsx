@@ -5,6 +5,7 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/home/Home";
 import GalleryPage from "./pages/gallery/GalleryPage";
 import ContactsPage from "./pages/contact/ContactsPage";
+import CurriculumPage from "./pages/curriculum/CurriculumPage";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
           {/* <Route path="/about" element={<About />} /> */}
           <Route path="/contact" element={<ContactsPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/curriculum" element={<CurriculumPage />} />
+          <Route path="/curriculum" element={<CurriculumPage />} />
         </Routes>
       </MainLayout>
     </Router>
