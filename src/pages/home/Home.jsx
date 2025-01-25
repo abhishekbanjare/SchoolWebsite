@@ -8,7 +8,6 @@ import Courses from "./Courses";
 import WhyChooseUs from "./WhyChooseUs";
 import Gallery from "./Gallery";
 import DirectorSection from "./DirectorSection";
-// import homeBanner from "./"
 export default function Home() {
   return (
     <div>
