@@ -1,8 +1,35 @@
 import React, { useState } from "react";
-import { Box, Grid, Typography, TextField, Button, Paper } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  Paper,
+  Dialog,
+  DialogContent,
+} from "@mui/material";
 import { Phone, Email, LocationOn } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import theme from "../../theme/Theme";
+import thankYouImage from "/Img/contactPage/ThankYou.jpg";
+
+const textFieldStyles = {
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": { borderColor: "#b2bec3" },
+    "&:hover fieldset": { borderColor: theme.palette.customBlue.main },
+    marginBottom: "15px",
+    "&.Mui-focused fieldset": {
+      borderColor: theme.palette.customBlue.main,
+      borderWidth: "2px",
+    },
+    input: { color: "#747d8c" },
+    "&.Mui-focused input": { color: "#747d8c" },
+  },
+  "& .MuiInputLabel-root": { color: "#747d8c" },
+  "& .MuiInputLabel-root.Mui-focused": { color: theme.palette.customBlue.main },
+  "& .MuiInputBase-inputMultiline": { color: "#747d8c" },
+};
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -14,6 +41,9 @@ const Contact = () => {
     mobile: "",
     message: "",
   });
+
+  // State for the thank you popup
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // Handle input change
   const handleChange = (e) => {
@@ -27,7 +57,9 @@ const Contact = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Thank you for contacting us! We will get back to you soon.");
+
+    // Show the popup
+    setIsPopupOpen(true);
 
     // Reset the form fields
     setFormData({
@@ -37,12 +69,15 @@ const Contact = () => {
       message: "",
     });
 
-    navigate("/");
+    // Close the popup after 3 seconds and navigate to home
+    setTimeout(() => {
+      setIsPopupOpen(false);
+      navigate("/");
+    }, 3000);
   };
 
   return (
     <Box sx={{ padding: "20px", minHeight: "100vh" }}>
-      {/* Header Section */}
       <Typography
         variant="h4"
         sx={{
@@ -54,9 +89,7 @@ const Contact = () => {
         Contact Us
       </Typography>
 
-      {/* Grid Container */}
       <Grid container spacing={4} sx={{ alignItems: "stretch" }}>
-        {/* Contact Details Section */}
         <Grid item xs={12} md={6}>
           <Paper
             elevation={3}
@@ -78,8 +111,6 @@ const Contact = () => {
               We'd love to hear from you! Reach out to us via the form or the
               contact details below.
             </Typography>
-
-            {/* Contact Info */}
             <Box
               sx={{
                 display: "flex",
@@ -127,7 +158,6 @@ const Contact = () => {
           </Paper>
         </Grid>
 
-        {/* Contact Form Section */}
         <Grid item xs={12} md={6}>
           <Paper
             elevation={3}
@@ -162,7 +192,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                sx={{ marginBottom: "15px" }}
+                sx={textFieldStyles}
               />
               <TextField
                 fullWidth
@@ -173,7 +203,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                sx={{ marginBottom: "15px" }}
+                sx={textFieldStyles}
               />
               <TextField
                 fullWidth
@@ -185,7 +215,7 @@ const Contact = () => {
                 value={formData.mobile}
                 onChange={handleChange}
                 required
-                sx={{ marginBottom: "15px" }}
+                sx={textFieldStyles}
               />
               <TextField
                 fullWidth
@@ -197,7 +227,7 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                sx={{ marginBottom: "15px" }}
+                sx={textFieldStyles}
               />
               <Button
                 type="submit"
@@ -215,6 +245,52 @@ const Contact = () => {
           </Paper>
         </Grid>
       </Grid>
+
+      {/* Thank You Popup */}
+      <Dialog
+        open={isPopupOpen}
+        maxWidth="xs"
+        fullWidth
+        PaperProps={{
+          sx: {
+            marginTop: "0%", // Position the dialog 10% from the top of the viewport
+          },
+        }}
+      >
+        <DialogContent
+          sx={{
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: 0, // Remove padding for full image width at the top
+          }}
+        >
+          <img
+            src={thankYouImage}
+            alt="Thank You"
+            style={{
+              width: "100%", // Full width
+              height: "auto", // Maintain aspect ratio
+              display: "block", // Avoid extra spacing under the image
+            }}
+          />
+          <Box
+            sx={{
+              padding: "20px", // Add padding for text content
+              textAlign: "center",
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{ color: theme.palette.customBlue.main, fontWeight: "bold" }}
+            >
+              Thank you for contacting us!
+            </Typography>
+            <Typography variant="h6">We will get back to you soon.</Typography>
+          </Box>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };

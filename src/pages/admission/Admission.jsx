@@ -1,9 +1,14 @@
 import React from "react";
-
+import BannerCustom from "../customeComponents/BannerCustom";
+import backgroundImage from "/Img/customBanner/AdmissionBanner1.png";
 export default function Admission() {
   return (
     <div>
-      <h3>This is Admission Page</h3>
+      <BannerCustom
+        title="Admission"
+        breadcrumb="Home"
+        bgImage={backgroundImage}
+      />
     </div>
   );
 }
