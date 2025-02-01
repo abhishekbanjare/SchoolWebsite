@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCourses } from "../../redux/courseSlice";
 import {
   Box,
   Grid,
@@ -11,6 +13,13 @@ import {
 import Subject from "../../data/subjects.json";
 
 const Courses = () => {
+  const dispatch = useDispatch();
+  const { courses, loading, error } = useSelector((state) => state.courses);
+  // console.log("abcourses......", courses);
+  useEffect(() => {
+    dispatch(fetchCourses()); // Dispatch the action to fetch courses
+  }, [dispatch]);
+
   return (
     <Container>
       <Box sx={{ py: 6 }}>
@@ -24,7 +33,8 @@ const Courses = () => {
 
         {/* Courses Grid */}
         <Grid container spacing={4} justifyContent="center">
-          {Subject.map((course) => (
+          {/* {Subject.map((course) => ( */}
+          {courses.map((course) => (
             <Grid
               item
               xs={12}
@@ -53,8 +63,9 @@ const Courses = () => {
                 <CardMedia
                   component="img"
                   height="200"
-                  image={course.image}
-                  alt={course.title}
+                  // image={course.imageUrl}
+                  image={`http://localhost:5000${course.imageUrl}`}
+                  alt={course.subjectName}
                   sx={{ borderRadius: "8px 8px 0 0" }}
                 />
                 {/* Course Content */}
@@ -65,7 +76,7 @@ const Courses = () => {
                     component="div"
                     sx={{ fontWeight: "bold", color: "#444" }}
                   >
-                    {course.title}
+                    {course.subjectName}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {course.description}

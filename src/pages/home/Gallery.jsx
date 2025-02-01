@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchGallery } from "../../redux/gallerySlice";
+import { useNavigate } from "react-router-dom";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -13,6 +16,15 @@ const images = [
 ];
 
 const Gallery = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // ✅ Initialize navigation hook
+
+  // Redux se data select karna
+  const { galleries, loading, error } = useSelector((state) => state.galleries);
+  useEffect(() => {
+    dispatch(fetchGallery()); // Redux se data fetch karne ka action call karna
+  }, [dispatch]);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -42,12 +54,13 @@ const Gallery = () => {
       },
     ],
   };
-
+  // ✅ Function to handle navigation
+  const handleImageClick = () => {
+    navigate("/gallery"); // Pass data via state
+  };
   return (
     <Container sx={{ py: 5 }}>
-      <Box
-      // sx={{ padding: { xs: 2, sm: 4, md: 6 } }}
-      >
+      <Box>
         <Grid container direction="column" alignItems="center">
           <Typography
             variant="h4"
@@ -64,37 +77,53 @@ const Gallery = () => {
         {/* Image Slider */}
         <Box>
           <Slider {...settings}>
-            {images.map((image, index) => (
+            {galleries.map((gallery) => (
               <Box
-                key={index}
+                key={gallery.id}
+                onClick={() => handleImageClick()}
                 sx={{
                   borderRadius: 3,
-                  width: "90%", // Reduced width for better layout
-                  margin: "0 auto", // Center horizontally
-                  padding: "10px", // Padding around the image cards for spacing
+                  width: "320px", // ✅ Fix width
+                  height: "350px", // ✅ Fix height
+                  margin: "0 auto",
+                  padding: "10px",
                   boxSizing: "border-box",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-between",
                 }}
               >
+                {/* Image */}
                 <Box
                   component="img"
-                  src={image.src}
-                  alt={image.alt}
+                  src={`http://localhost:5000${gallery.imageUrl}`}
+                  alt={gallery.title}
                   sx={{
-                    width: "100%", // Ensure the image takes full width of the container
-                    height: "auto",
-                    borderRadius: 2, // Slightly rounded corners
-                    // boxShadow: "0px 4px 10px rgba(0,0,0,0.2)", // Optional shadow for better visuals
+                    width: "100%", // ✅ Full width
+                    height: "250px", // ✅ Fixed height
+                    objectFit: "cover", // ✅ Crop image to fit the box
+                    borderRadius: 0.5,
                   }}
                 />
+
+                {/* Title */}
                 <Typography
                   variant="subtitle1"
                   textAlign="center"
                   sx={{
-                    marginTop: "0.5rem",
                     fontWeight: "500",
+                    width: "100%",
+                    height: "50px", // ✅ Fixed height for text section
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  {image.alt}
+                  {gallery.title}
                 </Typography>
               </Box>
             ))}
