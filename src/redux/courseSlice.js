@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Define the API URL
-const API_URL = "http://localhost:5000/courses";
+const API_URL = "http://localhost:5000/api/courses";
 
 // Create async thunk to fetch courses
 export const fetchCourses = createAsyncThunk(
-  "courses/fetchCourses",
+  "api/courses/fetchCourses",
   async () => {
     try {
       // console.log("Fetching courses from:", API_URL); // ✅ Debug API URL
