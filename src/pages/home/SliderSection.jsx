@@ -1,5 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSlider } from "../../redux/slidersectionSlice";
+
 import { Box } from "@mui/material";
 import Slider from "react-slick";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -8,8 +11,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import banners from "../../data/homeBanner.json";
 
-// import theme from "@/theme/Theme";
-export default function BannerSection() {
+export default function SliderSection() {
+  const dispatch = useDispatch();
+  const { sliders, loading, error } = useSelector((state) => state.sliders);
+  useEffect(() => {
+    dispatch(fetchSlider());
+  }, [dispatch]);
+
   const sliderSettings = {
     // dots: true,
     dots: false,
@@ -103,11 +111,12 @@ export default function BannerSection() {
       }}
     >
       <Slider {...sliderSettings}>
-        {banners.map((banner) => (
+        {/* {banners.map((banner) => ( */}
+        {sliders.map((banner) => (
           <div key={banner.id}>
             <Box
               component="img"
-              src={banner.image}
+              src={`http://localhost:5000${banner.imageUrl}`}
               alt={banner.alt}
               sx={{
                 width: "100%",

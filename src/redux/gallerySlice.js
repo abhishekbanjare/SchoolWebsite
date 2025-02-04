@@ -2,16 +2,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Define the API URL
-const API_URL = "http://localhost:5000/gallery";
+const API_URL = "http://localhost:5000/api/gallery";
 
 // Create async thunk to fetch courses
 export const fetchGallery = createAsyncThunk(
-  "gallery/fetchGallery",
+  "api/gallery/fetchGallery",
   async () => {
     try {
-      console.log("Fetching gallery from:", API_URL); // ✅ Debug API URL
+      // console.log("Fetching gallery from:", API_URL); // ✅ Debug API URL
       const response = await axios.get(API_URL);
-      console.log("API Response:", response.data); // ✅ Debugging API Response
+      // console.log("API Response:", response.data); // ✅ Debugging API Response
       return response.data.data;
     } catch (error) {
       console.error("Fetch Courses Error:", error); // ✅ Debugging error
