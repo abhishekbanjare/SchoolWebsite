@@ -6,56 +6,75 @@ const DirectorSection = () => {
     <Container sx={{ my: 6 }}>
       <Box
         sx={{
-          padding: { xs: 2, sm: 4, md: 6 },
-          backgroundColor: "#f9f9f9", // Light background
-          borderRadius: "8px",
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+          backgroundColor: "#ffffff", // Clean white background
+          padding: { xs: 3, sm: 5, md: 6 },
+          borderRadius: "10px",
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)", // Soft shadow for depth
           maxWidth: "1200px",
           margin: "auto",
         }}
       >
-        <Grid container spacing={4} alignItems="center">
+        <Grid container spacing={4} alignItems="center" justifyContent="center">
           {/* Left Column - Director's Message */}
           <Grid item xs={12} md={6}>
             <Typography
-              variant="h4"
+              variant="h3"
               sx={{
                 fontWeight: "bold",
-                textAlign: { xs: "center", md: "center" },
+                color: "#333",
+                textAlign: "center",
+                mb: 3,
               }}
             >
               Message from the{" "}
               <span style={{ color: "#B50303" }}>Director</span>
             </Typography>
+
             <Typography
-              variant="body1"
+              variant="h5"
               sx={{
-                color: "#555",
-                fontWeight: "bold",
-                textAlign: { xs: "center", md: "center" },
+                color: "#444",
+                textAlign: "center",
+                mb: 2,
               }}
             >
               Dear students, parents, and staff,
             </Typography>
-            <Typography variant="body1" sx={{ color: "#555",textAlign: { xs: "center", md: "center" }, }}>
+
+            <Typography
+              variant="body1"
+              sx={{
+                lineHeight: 1.8,
+                color: "#555",
+                textAlign: "center",
+                mb: 4,
+              }}
+            >
               It is with great pride and pleasure that I welcome you to our
               institution. Our mission is to provide a nurturing and
               intellectually stimulating environment where students grow to
               become responsible global citizens. Let us work together to
               achieve excellence and contribute to a brighter future.
             </Typography>
+
             <Typography
-              variant="subtitle1"
+              variant="h6"
               sx={{
                 color: "#B50303",
-                textAlign: { xs: "center", md: "center" },
+                textAlign: "center",
+                fontWeight: "bold",
+                mb: 1,
               }}
             >
               Mr. Anurag Barnwal
             </Typography>
+
             <Typography
               variant="subtitle1"
-              sx={{ textAlign: { xs: "center", md: "center" } }}
+              sx={{
+                textAlign: "center",
+                color: "#555",
+              }}
             >
               Director, Anurag Public School
             </Typography>
@@ -76,10 +95,11 @@ const DirectorSection = () => {
                 alt="Director"
                 style={{
                   width: "100%",
-                  maxWidth: "340px",
+                  maxWidth: "300px",
                   height: "auto",
                   borderRadius: "50%",
-                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                  boxShadow: "0px 6px 20px rgba(0, 0, 0, 0.1)", // Softer shadow
+                  objectFit: "cover",
                 }}
               />
             </Box>

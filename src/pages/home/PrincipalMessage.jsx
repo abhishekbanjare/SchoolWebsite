@@ -6,97 +6,107 @@ const PrincipalMessage = () => {
     <Container sx={{ my: 6 }}>
       <Box
         sx={{
-          backgroundColor: "#f9f9f9", // Light background
-          padding: { xs: 2, sm: 4, md: 6 },
-          borderRadius: "8px",
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+          backgroundColor: "#ffffff", // Clean white background
+          padding: { xs: 3, sm: 5, md: 6 },
+          borderRadius: "10px",
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)", // Soft shadow for depth
           maxWidth: "1200px",
           margin: "auto",
         }}
       >
-        <Grid container spacing={4} alignItems="center">
-          {/* Left Column - Director's Message */}
-          <Grid item xs={12} md={6}>
+        <Grid container spacing={4} alignItems="center" justifyContent="center">
+          {/* Left Column - Principal's Image */}
+          <Grid item xs={12} md={5}>
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "100%",
               }}
             >
               <img
                 src="Img/Principal/Principal.jpg" // Replace with actual path
-                alt="Director"
+                alt="Principal"
                 style={{
                   width: "100%",
-                  maxWidth: "340px",
+                  maxWidth: "300px",
                   height: "auto",
                   borderRadius: "50%",
-                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
                 }}
               />
             </Box>
           </Grid>
 
-          {/* Right Column - Director's Image */}
-          <Grid item xs={12} md={6}>
+          {/* Right Column - Principal's Message */}
+          <Grid item xs={12} md={7}>
             <Typography
-              variant="h4"
+              variant="h3"
               sx={{
                 fontWeight: "bold",
-                textAlign: { xs: "center", md: "center" },
+                color: "#333",
+                textAlign: "center",
+                mb: 3,
               }}
             >
               Principal's <span style={{ color: "#B50303" }}>Message</span>
             </Typography>
+
             <Typography
-              variant="subtitle1"
+              variant="h5"
               sx={{
-                color: "#555",
+                color: "#444",
                 fontWeight: "bold",
-                textAlign: { xs: "center", md: "center" },
+                textAlign: "center",
+                mb: 2,
               }}
             >
               Dear Students, Parents, & Guardians,
             </Typography>
+
             <Typography
-              variant="subtitle1"
+              variant="h6"
               sx={{
-                color: "#555",
-                fontWeight: "bold",
-                textAlign: { xs: "center", md: "center" },
+                color: "#444",
+                textAlign: "center",
+                mb: 3,
               }}
             >
-              Welcome to Anurag Public School, Raipur !
+              Welcome to Anurag Public School, Raipur!
             </Typography>
+
             <Typography
               variant="body1"
               sx={{
                 lineHeight: 1.8,
                 color: "#555",
-                textAlign: { xs: "center", md: "center" },
+                textAlign: "center",
+                mb: 4,
               }}
             >
-              As the Principal, I am honored to lead our community toward
-              academic excellence. Students, dream big, work hard, and embrace
-              learning. Parents, thank you for your trust and partnership. Let's
-              create a positive and inspiring environment together.
+              As the Principal, I am honored to lead our community toward academic excellence. Students, dream big, work hard, and embrace learning. Parents, thank you for your trust and partnership. Together, we will create a positive and inspiring environment.
             </Typography>
+
             <Typography
-              variant="subtitle1"
+              variant="h6"
               sx={{
                 color: "#B50303",
-                textAlign: { xs: "center", md: "center" },
+                textAlign: "center",
+                fontWeight: "bold",
+                mb: 1,
               }}
             >
               Mr. Sri Ram Singh
             </Typography>
+
             <Typography
               variant="subtitle1"
-              sx={{ textAlign: { xs: "center", md: "center" } }}
+              sx={{
+                textAlign: "center",
+                color: "#555",
+              }}
             >
-              Principal, Anurag Public School, Raipur !
+              Principal, Anurag Public School, Raipur
             </Typography>
           </Grid>
         </Grid>
