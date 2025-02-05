@@ -9,7 +9,7 @@ const DirectorSection = () => {
           padding: { xs: 2, sm: 4, md: 6 },
           backgroundColor: "#f9f9f9", // Light background
           borderRadius: "8px",
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
           maxWidth: "1200px",
           margin: "auto",
         }}

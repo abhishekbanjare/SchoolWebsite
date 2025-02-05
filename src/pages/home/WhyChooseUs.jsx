@@ -118,7 +118,7 @@ const WhyChooseUs = () => {
                     flexDirection: "column",
                     textAlign: "center",
                     py: 3,
-                    boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)", // Deeper shadow effect
+                    boxShadow: "-4px 6px 10px rgba(0, 0, 0, 0.3)", // Deeper shadow effect
                     borderRadius: "15px", // Slightly more rounded corners for a smoother look
                     backgroundColor: "#f0f0f0",
                     transition:
@@ -126,7 +126,7 @@ const WhyChooseUs = () => {
                     height: "180px", // Fixed height for all cards
                     "&:hover": {
                       transform: "scale(1.05)",
-                      boxShadow: "0px 12px 20px rgba(0, 0, 0, 0.3)", // Stronger shadow on hover
+                      boxShadow: "-4px 6px 12px rgba(0, 0, 0, 0.3)", // Stronger shadow on hover
                     },
                   }}
                 >
