@@ -1,101 +1,140 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchGallery } from "../../redux/gallerySlice";
+import React, { useState } from "react";
 import {
   Grid,
-  Container,
-  Typography,
   Card,
   CardMedia,
-  CardContent,
-  Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  IconButton,
+  Button,
 } from "@mui/material";
-import { motion } from "framer-motion"; // ✅ Import framer-motion
+import { ArrowForward, ArrowBack } from "@mui/icons-material";
+
+const galleryData = [
+  {
+    albumName: "Album 1",
+    images: [
+      "Img/GalleryImg/img1.jpg",
+      "Img/GalleryImg/img001.jpg",
+      "Img/GalleryImg/img2.jpg",
+      "Img/GalleryImg/img002.jpg",
+    ],
+  },
+  {
+    albumName: "Album 2",
+    images: [
+      "Img/GalleryImg/img1.jpg",
+      "Img/GalleryImg/img001.jpg",
+      "Img/GalleryImg/img2.jpg",
+      "Img/GalleryImg/img002.jpg",
+    ],
+  },
+  {
+    albumName: "Album 3",
+    images: [
+      "Img/GalleryImg/img1.jpg",
+      "Img/GalleryImg/img001.jpg",
+      "Img/GalleryImg/img2.jpg",
+      "Img/GalleryImg/img002.jpg",
+    ],
+  },
+  {
+    albumName: "Album 4",
+    images: [
+      "Img/GalleryImg/img1.jpg",
+      "Img/GalleryImg/img001.jpg",
+      "Img/GalleryImg/img2.jpg",
+      "Img/GalleryImg/img002.jpg",
+    ],
+  },
+  {
+    albumName: "Album 5",
+    images: [
+      "Img/GalleryImg/img1.jpg",
+      "Img/GalleryImg/img001.jpg",
+      "Img/GalleryImg/img2.jpg",
+      "Img/GalleryImg/img002.jpg",
+    ],
+  },
+  {
+    albumName: "Album 6",
+    images: [
+      "Img/GalleryImg/img1.jpg",
+      "Img/GalleryImg/img001.jpg",
+      "Img/GalleryImg/img2.jpg",
+      "Img/GalleryImg/img002.jpg",
+    ],
+  },
+
+  // Add more albums and images as needed
+];
 
 const GallerySections = () => {
-  const dispatch = useDispatch();
-  const { galleries, loading, error } = useSelector((state) => state.galleries);
+  const [open, setOpen] = useState(false);
+  const [currentAlbum, setCurrentAlbum] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    dispatch(fetchGallery());
-  }, [dispatch]);
+  const handleClickOpen = (album, index) => {
+    setCurrentAlbum(album);
+    setCurrentImageIndex(index);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex + 1) % currentAlbum.images.length
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + currentAlbum.images.length) %
+        currentAlbum.images.length
+    );
+  };
 
   return (
-    <Container sx={{ pb: 6, pt: 4 }}>
-      <Typography
-        variant="h4"
-        component="h2"
-        sx={{
-          fontWeight: "bold",
-          textAlign: "center",
-          mb: 4,
-        }}
-      >
-        Our Gallery
-      </Typography>
-
-      {/* ✅ Handle loading & errors */}
-      {loading && <Typography align="center">Loading...</Typography>}
-      {error && (
-        <Typography align="center" color="error">
-          Failed to load gallery!
-        </Typography>
-      )}
-
-      <Grid container spacing={3}>
-        {galleries.map((gallery, index) => (
-          <Grid item xs={12} sm={6} md={4} key={gallery.id}>
-            {/* ✅ Add animation to the cards */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 50 }} // Starts from the bottom with no opacity
-              whileInView={{ opacity: 1, y: 0 }} // Animates to original position with full opacity
-              transition={{ duration: 1, type: "spring", stiffness: 100 }} // Smooth spring effect
-              viewport={{ once: true, amount: 0.3 }} // Trigger animation when 30% of card is in view
-            > */}
-
-            <motion.div
-              initial={{ opacity: 0, y: 50 }} // Start from bottom
-              whileInView={{ opacity: 1, y: 0 }} // Animate smoothly from bottom to top
-              transition={{ duration: 0.6, delay: index * 0.05 }} // Smooth transition with slight stagger
-              viewport={{ once: true, amount: 0.3 }} // Trigger animation when 30% of card is in view
-            >
-              <Card
-                sx={{
-                  borderRadius: "12px", // Smooth corners
-                  boxShadow: "0px 5px 15px rgba(0,0,0,0.1)", // Soft shadow
-                  transition: "transform 0.3s ease-in-out",
-                  "&:hover": {
-                    transform: "translateY(-5px)", // Slight lift on hover
-                    boxShadow: "0px 8px 20px rgba(0,0,0,0.2)",
-                  },
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="250"
-                  image={`http://localhost:5000${gallery.imageUrl}`}
-                  alt={gallery.title}
-                  sx={{
-                    objectFit: "cover", // Ensures images fit well
-                    borderRadius: "12px 12px 0 0", // Smooth border for top corners
-                  }}
-                />
-                <CardContent
-                  sx={{ textAlign: "center", backgroundColor: "#fff" }}
-                >
-                  <Typography
-                    variant="h6"
-                    sx={{ fontWeight: "bold", color: "#333" }}
-                  >
-                    {gallery.title}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </motion.div>
+    <div>
+      <Grid container spacing={2}>
+        {galleryData.map((album, albumIndex) => (
+          <Grid item xs={4} key={albumIndex}>
+            <Card>
+              <CardMedia
+                component="img"
+                alt={album.albumName}
+                height="140"
+                image={album.images[0]}
+                onClick={() => handleClickOpen(album, 0)} // Show the first image of the album by default
+              />
+            </Card>
           </Grid>
         ))}
       </Grid>
-    </Container>
+
+      <Dialog open={open} onClose={handleClose} maxWidth="lg" fullWidth>
+        <DialogContent>
+          <img
+            src={currentAlbum?.images[currentImageIndex]}
+            alt="Full-Screen"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <IconButton onClick={prevImage} color="primary">
+            <ArrowBack />
+          </IconButton>
+          <IconButton onClick={nextImage} color="primary">
+            <ArrowForward />
+          </IconButton>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 
