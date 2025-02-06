@@ -26,7 +26,7 @@ export default function SliderSection() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true, // Enable autoplay
-    autoplaySpeed: 3000, // Set duration (in milliseconds) between slides
+    autoplaySpeed: 2000, // Set duration (in milliseconds) between slides
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -121,7 +121,7 @@ export default function SliderSection() {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: { xs: 200, md: 300 },
+                maxHeight: { xs: 200, md: 350 },
                 objectFit: "cover",
               }}
             />

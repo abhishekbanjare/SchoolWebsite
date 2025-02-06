@@ -9,6 +9,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import LatestNews from "./LatestNews";
+import theme from "../../theme/Theme";
 
 const Welcome = () => {
   return (
@@ -24,7 +25,8 @@ const Welcome = () => {
                 textAlign: { xs: "center", md: "left" },
               }}
             >
-              Welcome <span style={{ color: "#B50303" }}>To</span>
+              Welcome{" "}
+              <span style={{ color: theme.palette.customBlue.main }}>To</span>
             </Typography>
             <Typography
               variant="h6"

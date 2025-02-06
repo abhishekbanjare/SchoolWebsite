@@ -32,7 +32,7 @@ const Courses = () => {
         </Typography>
 
         {/* Courses Grid */}
-        <Grid container spacing={4} justifyContent="center">
+        <Grid container spacing={2} justifyContent="center">
           {/* {Subject.map((course) => ( */}
           {courses.map((course) => (
             <Grid
@@ -44,7 +44,7 @@ const Courses = () => {
               sx={{ display: "flex", justifyContent: "center" }}
             >
               <Card
-                elevation={8}
+                elevation={4}
                 sx={{
                   width: "100%",
                   maxWidth: 360,
@@ -54,8 +54,8 @@ const Courses = () => {
                   borderRadius: 2,
                   transition: "transform 0.3s ease-in-out, box-shadow 0.3s",
                   "&:hover": {
-                    transform: "scale(1.03)",
-                    boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
+                    transform: "scale(1.01)",
+                    boxShadow: "0px 10px 10px rgba(0, 0, 0, 0.1)",
                   },
                 }}
               >
@@ -74,7 +74,11 @@ const Courses = () => {
                     gutterBottom
                     variant="h6"
                     component="div"
-                    sx={{ fontWeight: "bold", color: "#444" }}
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#444",
+                      my: 0,
+                    }}
                   >
                     {course.subjectName}
                   </Typography>

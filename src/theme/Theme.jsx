@@ -107,7 +107,9 @@ const theme = createTheme({
   palette: {
     customBlue: {
       //for theme color
-      main: "#B50303",
+      // main: "#B50303",
+      // main: "#0D47A1",
+      main: "#1289A7",
     },
   },
 });

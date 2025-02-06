@@ -19,7 +19,7 @@ export default function Home() {
       <Facilities />
       <Courses />
       <WhyChooseUs />
-      <Gallery />
+      {/* <Gallery /> */}
     </div>
   );
 }

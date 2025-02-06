@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Grid, Typography, Box } from "@mui/material";
+import theme from "../../theme/Theme";
 
 const PrincipalMessage = () => {
   return (
@@ -46,10 +47,13 @@ const PrincipalMessage = () => {
                 fontWeight: "bold",
                 color: "#333",
                 textAlign: "center",
-                mb: 3,
+                // mb: 3,
               }}
             >
-              Principal's <span style={{ color: "#B50303" }}>Message</span>
+              Principal's{" "}
+              <span style={{ color: theme.palette.customBlue.main }}>
+                Message
+              </span>
             </Typography>
 
             <Typography
@@ -58,7 +62,7 @@ const PrincipalMessage = () => {
                 color: "#444",
                 fontWeight: "bold",
                 textAlign: "center",
-                mb: 2,
+                // mb: 2,
               }}
             >
               Dear Students, Parents, & Guardians,
@@ -69,10 +73,10 @@ const PrincipalMessage = () => {
               sx={{
                 color: "#444",
                 textAlign: "center",
-                mb: 3,
+                // mb: 3,
               }}
             >
-              Welcome to Anurag Public School, Raipur!
+              Welcome to Anurag Public School!
             </Typography>
 
             <Typography
@@ -81,19 +85,22 @@ const PrincipalMessage = () => {
                 lineHeight: 1.8,
                 color: "#555",
                 textAlign: "center",
-                mb: 4,
+                mb: 2,
               }}
             >
-              As the Principal, I am honored to lead our community toward academic excellence. Students, dream big, work hard, and embrace learning. Parents, thank you for your trust and partnership. Together, we will create a positive and inspiring environment.
+              As the Principal, I am honored to lead our community toward
+              academic excellence. Students, dream big, work hard, and embrace
+              learning. Parents, thank you for your trust and partnership.
+              Together, we will create a positive and inspiring environment.
             </Typography>
 
             <Typography
               variant="h6"
               sx={{
-                color: "#B50303",
+                color: theme.palette.customBlue.main,
                 textAlign: "center",
                 fontWeight: "bold",
-                mb: 1,
+                // mb: 1,
               }}
             >
               Mr. Sri Ram Singh
@@ -106,7 +113,7 @@ const PrincipalMessage = () => {
                 color: "#555",
               }}
             >
-              Principal, Anurag Public School, Raipur
+              Principal, Anurag Public School
             </Typography>
           </Grid>
         </Grid>

@@ -86,7 +86,7 @@ const Facilities = () => {
                     >
                       {facility.icon}
                     </Box>
-                    <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                    <Typography variant="h6" sx={{ fontWeight: "bold" , color: "#444",}}>
                       {facility.title}
                     </Typography>
                   </Box>

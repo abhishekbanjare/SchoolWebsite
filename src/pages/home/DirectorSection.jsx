@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Grid, Typography, Box } from "@mui/material";
+import theme from "../../theme/Theme";
 
 const DirectorSection = () => {
   return (
@@ -23,11 +24,10 @@ const DirectorSection = () => {
                 fontWeight: "bold",
                 color: "#333",
                 textAlign: "center",
-                mb: 3,
               }}
             >
               Message from the{" "}
-              <span style={{ color: "#B50303" }}>Director</span>
+              <span style={{   color: theme.palette.customBlue.main, }}>Director</span>
             </Typography>
 
             <Typography
@@ -35,7 +35,6 @@ const DirectorSection = () => {
               sx={{
                 color: "#444",
                 textAlign: "center",
-                mb: 2,
               }}
             >
               Dear students, parents, and staff,
@@ -47,7 +46,7 @@ const DirectorSection = () => {
                 lineHeight: 1.8,
                 color: "#555",
                 textAlign: "center",
-                mb: 4,
+                mb: 2,
               }}
             >
               It is with great pride and pleasure that I welcome you to our
@@ -60,10 +59,9 @@ const DirectorSection = () => {
             <Typography
               variant="h6"
               sx={{
-                color: "#B50303",
+                color: theme.palette.customBlue.main,
                 textAlign: "center",
                 fontWeight: "bold",
-                mb: 1,
               }}
             >
               Mr. Anurag Barnwal

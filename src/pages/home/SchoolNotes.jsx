@@ -1,57 +1,60 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSchoolNotes } from "../../redux/schoolnoteSlice";
 import { Box, Typography } from "@mui/material";
 import theme from "./../../theme/Theme";
 
 const SchoolNotes = () => {
-  // Static JSON object
-  const schoolNotes = [
-    { id: 1, text: "Welcome to Anurag Public School, Raipur!" },
-    { id: 2, text: "Admissions are open for the 2025-26 academic year" },
-    { id: 3, text: "Contact us for more details." },
-    { id: 4, text: "Annual Sports Day on 15th March" },
-    { id: 5, text: "Science Exhibition on 25th March" },
-    { id: 6, text: "Parent-Teacher Meeting on 10th April" },
-    {
-      id: 7,
-      text: "Congrats to our students for winning the State Level Science Quiz!",
-    },
-  ];
+  const dispatch = useDispatch();
+  const { notesList, loading } = useSelector((state) => state.schoolNote);
 
-  // Sare notes ko join karke ek string bana rahe hain
-  const notesText = schoolNotes.map((note) => note.text).join(" | ");
+  const [notesText, setNotesText] = useState("Fetching latest school notes...");
+
+  useEffect(() => {
+    dispatch(fetchSchoolNotes());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (notesList.length > 0) {
+      setNotesText(notesList.map((note) => note.SchoolNote).join(" | "));
+    }
+  }, [notesList]);
+
+  // Dynamic speed calculation (longer text moves slower for better readability)
+  const textLength = notesText.length;
+  const animationDuration = Math.max(20, textLength / 6) + "s"; // Adjust speed dynamically
 
   return (
     <Box
       sx={{
-        // border:"1px solid red",
-        // background: "#d1d8e0",
         overflow: "hidden",
         whiteSpace: "nowrap",
-        padding: "2px",
+        padding: "5px",
         position: "relative",
+        backgroundColor: "#f5f5f5",
+        borderRadius: "5px",
       }}
     >
       <Typography
         component="div"
         sx={{
           display: "inline-block",
-          animation: "scroll-left 50s linear infinite",
-          animationDelay: "0s",
+          animation: `scroll-left ${animationDuration} linear infinite`,
           fontSize: "18px",
           fontWeight: "bold",
           color: theme.palette.customBlue.main,
         }}
       >
-        {notesText || "No school notes available"}
+        {notesText}
       </Typography>
 
       <style>
         {`
           @keyframes scroll-left {
-            0% {
-              transform: translateX(10%);
+            from {
+              transform: translateX(20%);
             }
-            100% {
+            to {
               transform: translateX(-100%);
             }
           }
